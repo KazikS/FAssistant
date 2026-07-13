@@ -1,75 +1,116 @@
-# React + TypeScript + Vite
+# FAssistant — веб-приложение для финансового учёта
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA для учёта личных финансов: транзакции, категории, лимиты по бюджету и аналитика расходов. Проект демонстрирует навыки frontend-разработки — работу с состоянием, типизацию, проектирование данных и визуализацию — на примере полноценного приложения без бэкенда.
 
-Currently, two official plugins are available:
+> **Статус:** в разработке. Данные хранятся локально (localStorage), серверная часть не требуется.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Возможности (MVP)
 
-## React Compiler
+**Учёт транзакций** Быстрое добавление операции по кнопке «+»: тип (доход/расход), сумма, категория, дата, заметка. Список операций с фильтрацией по типу, категории и месяцу, поиском по описанию. Редактирование и удаление прямо из строки списка.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Категории** Предустановленный набор (Продукты, Транспорт, Зарплата и т.д.) с возможностью создавать свои — выбрать иконку и цвет. Каждая категория привязана к типу (доход или расход), что упрощает форму и исключает бессмысленные операции.
 
-## Expanding the ESLint configuration
+**Бюджеты и лимиты** Месячный лимит на категорию расходов. Прогресс-бары по каждой категории с цветовой индикацией (зелёный → жёлтый → красный по мере приближения к лимиту) и визуальным предупреждением при превышении. Общий месячный потолок расходов с правилом: сумма лимитов категорий не превышает его.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Аналитика** Дашборд с ключевыми показателями текущего месяца: баланс, доходы, расходы, круговая диаграмма расходов по категориям и последние операции — быстрый обзор «как дела сейчас».
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Отчёты за период** Отдельный раздел для анализа за произвольный промежуток: сравнение месяцев (где стал тратить больше), динамика баланса за 6–12 месяцев, столбчатая диаграмма «доходы vs расходы». В отличие от дашборда — не текущий месяц, а история и сравнение.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Планы развития
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Функциональность за пределами MVP, подключается после готового ядра:
 
+- Тёмная / светлая тема
+- Экспорт в CSV
+- PWA (офлайн-режим, установка)
+- Адаптив (mobile-first)
+- Фейковая авторизация — вход по любому логину/паролю, флаг в localStorage, защищённые маршруты с редиректом на логин (демонстрация роутинга и состояния аутентификации)
+- Анимации переходов
+- Drag-and-drop
+- Демо-режим — переключение приложения на моковые данные
+- Мультивалютность (одна валюта на приложение)
+
+## Стек
+
+| Технология         | Роль                               |
+| ------------------ | ---------------------------------- |
+| React + TypeScript | основа, строгая типизация          |
+| React Router       | маршрутизация, защищённые маршруты |
+| Redux              | управление состоянием              |
+| Chakra UI          | компоненты и стили                 |
+| Recharts           | диаграммы и графики                |
+| React Hook Form    | формы и валидация                  |
+| Framer Motion      | анимации                           |
+
+Архитектура — **Feature-Sliced Design (FSD)**.
+
+## Структура страниц
+
+| Маршрут         | Назначение                                                         | Доступ    |
+| --------------- | ------------------------------------------------------------------ | --------- |
+| `/login`        | форма входа                                                        | публичный |
+| `/`             | дашборд: сводка за текущий месяц, последние операции, мини-графики | приватный |
+| `/transactions` | список операций с фильтрами и добавлением                          | приватный |
+| `/budgets`      | настройка лимитов, прогресс-бары                                   | приватный |
+| `/reports`      | аналитика за произвольный период, сравнение                        | приватный |
+| `/settings`     | тема, экспорт, сброс, смена имени                                  | приватный |
+
+## Модель данных
+
+Хранилище — localStorage. Транзакции ссылаются на категории по `categoryId` (нормализация: категория живёт в одном месте, изменение её цвета или имени не затрагивает транзакции). Доходы и баланс не хранятся отдельно, а вычисляются из транзакций.
+
+```ts
+type OperationType = 'income' | 'expense';
+
+interface Transaction {
+  id: string;
+  categoryId: string;
+  type: OperationType;
+  amount: number;
+  date: number;
+  description: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  type: OperationType;
+  categoryLimit?: number;
+  icon?: string;
+  color?: string;
+}
+
+interface Budget {
+  monthlyLimit: number;
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Данные пользователя (имя, флаг авторизации) хранятся отдельно, в состоянии сессии, и не входят в модель данных приложения.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Этапы разработки
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Разработка идёт **вертикальными срезами**: каждая фича доводится целиком (вёрстка → логика → хранение → тесты) до рабочего состояния, затем берётся следующая. После каждого этапа приложение запускается и полезно.
 
-```
+- [x] **Этап 0. Каркас** Инициализация Vite + React + TS, структура FSD, роутинг со страницами-заглушками, подключение Chakra и Redux. ✅ 2026-07-13
+
+**Этап 1. Транзакции (ядро)** Модель `Transaction`, стор (добавление/удаление/редактирование), сохранение в localStorage, форма добавления, список, действия в строке. Покрытие логики тестами.
+
+**Этап 2. Категории** Модель `Category`, предустановленный набор, создание своих (иконка/цвет), привязка транзакций по `categoryId`, фильтр списка по категории.
+
+**Этап 3. Лимиты** Лимит на категорию, общий месячный потолок с правилом распределения, расчёт «потрачено vs лимит», прогресс-бары с цветовой индикацией, предупреждение о превышении.
+
+**Этап 4. Дашборд** Расчёт баланса и сумм за текущий месяц, карточки-показатели, круговая диаграмма расходов, последние операции.
+
+**Этап 5. Отчёты** Выбор произвольного периода, сравнение месяцев, динамика баланса, столбчатая диаграмма доходов и расходов.
+
+**Этап 6. Настройки** Смена имени, сброс данных. На этом MVP завершён и полностью работоспособен.
+
+**Этап 7+. Расширения** Фейковая авторизация, темы, экспорт CSV, адаптив, PWA, анимации — по одной фиче, поверх готового ядра.
+
+## Риски
+
+- **Redux берётся как незнакомый инструмент** — осознанно, с целью освоить его на реальном проекте. Заложено дополнительное время на обучение; замедление на первых этапах ожидаемо.
+
+---
+
+_Проект в активной разработке. README отражает текущее видение и будет обновляться по мере реализации._
