@@ -1,0 +1,24 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FAssistant">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+
+  <!-- app-icon background -->
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#g)"/>
+
+  <!-- F as bar-chart: vertical stem + two "bars" (arms) of different length -->
+  <g fill="#ffffff">
+    <!-- stem -->
+    <rect x="20" y="16" width="8" height="32" rx="2"/>
+    <!-- top arm (long bar) -->
+    <rect x="20" y="16" width="26" height="8" rx="2"/>
+    <!-- middle arm (short bar) -->
+    <rect x="20" y="29" width="17" height="8" rx="2"/>
+  </g>
+
+  <!-- ascending accent dot: upward trend -->
+  <circle cx="47" cy="45" r="4" fill="#ffffff" opacity="0.92"/>
+</svg>
