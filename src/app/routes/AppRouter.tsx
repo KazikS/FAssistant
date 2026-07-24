@@ -8,31 +8,37 @@ import ReportsPage from '@/pages/Reports';
 import SettingsPage from '@/pages/Settings';
 import TransactionsPage from '@/pages/TransactionsPage';
 import { routes } from '@/shared/config/routes';
+import { Layout } from '@/shared/ui/Layout/Layout';
 
 const router = createBrowserRouter([
   {
-    path: routes.dashboard,
-    element: <DashboardPage />,
-  },
-  {
-    path: routes.login,
-    element: <LoginPage />,
-  },
-  {
-    path: routes.budgets,
-    element: <BudgetPage />,
-  },
-  {
-    path: routes.reports,
-    element: <ReportsPage />,
-  },
-  {
-    path: routes.transactions,
-    element: <TransactionsPage />,
-  },
-  {
-    path: routes.settings,
-    element: <SettingsPage />,
+    element: <Layout />,
+    children: [
+      {
+        path: routes.dashboard,
+        element: <DashboardPage />,
+      },
+      {
+        path: routes.login,
+        element: <LoginPage />,
+      },
+      {
+        path: routes.budgets,
+        element: <BudgetPage />,
+      },
+      {
+        path: routes.reports,
+        element: <ReportsPage />,
+      },
+      {
+        path: routes.transactions,
+        element: <TransactionsPage />,
+      },
+      {
+        path: routes.settings,
+        element: <SettingsPage />,
+      },
+    ],
   },
 ]);
 
