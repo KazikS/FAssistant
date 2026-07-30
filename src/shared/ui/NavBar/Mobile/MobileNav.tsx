@@ -14,7 +14,7 @@ import { MobileNavBtn } from './MobileNavBtn';
 export const MobileNav = () => {
   return (
     <Flex
-      bg="surface.primary"
+      bg="surface.navBar"
       w="full"
       as="aside"
       position="fixed"
@@ -41,8 +41,9 @@ export const MobileNav = () => {
           p="0"
           transform="translateY(-18px)"
           boxShadow="0 8px 18px -6px rgba(195, 242, 78, .7)"
+          aria-label="LuPlus"
         >
-          <Icon as={LuPlus} w={22} h={22} color="black" aria-label="LuPlus" />
+          <Icon as={LuPlus} w={22} h={22} color="black" />
         </Button>
       </Flex>
       <MobileNavBtn flex="1" subtitle="Бюджет" icon={LuChartColumn} to={routes.budgets} />

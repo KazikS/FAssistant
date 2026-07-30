@@ -20,9 +20,13 @@ export const MobileNavBtn = ({ subtitle, icon, rotate, flex, to }: MobileNavBtnP
               as={icon}
               boxSize="22px"
               rotate={rotate}
-              color={isActive ? 'brand.emphasis' : undefined}
+              color={isActive ? 'nav.tabActiveFg' : 'nav.tabFg'}
             />
-            <Text fontSize="10px" fontWeight="600" color={isActive ? 'brand.emphasis' : undefined}>
+            <Text
+              fontSize="10px"
+              fontWeight="600"
+              color={isActive ? 'nav.tabActiveFg' : 'nav.tabFg'}
+            >
               {subtitle}
             </Text>
           </Flex>

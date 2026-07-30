@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { LuHouse } from 'react-icons/lu';
 import { describe, expect, it } from 'vitest';
 
-import { render } from '@/test/test-utils-hooks';
+import { render } from '@/test/test-utils-render';
 
 import { MobileNavBtn } from './MobileNavBtn';
 
