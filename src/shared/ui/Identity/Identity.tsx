@@ -12,7 +12,7 @@ type IdentityProps = {
 export const Identity = ({ title, subtitle, bgColor, px }: IdentityProps) => {
   const letters = avatarLetters(title);
   return (
-    <Flex gap="16px" alignItems="center" py="2" px={px} bgColor={bgColor} rounded="xl">
+    <Flex gap="16px" alignItems="center" py="2" px={px} bgColor={bgColor} rounded="xl" as="article">
       <Flex
         w="46px"
         h="46px"

@@ -8,34 +8,34 @@ import ReportsPage from '@/pages/Reports';
 import SettingsPage from '@/pages/Settings';
 import TransactionsPage from '@/pages/TransactionsPage';
 import { routes } from '@/shared/config/routes';
-import { Layout } from '@/shared/ui/Layout/Layout';
+import { Layout } from '@/shared/ui/Layout';
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
-        path: routes.dashboard,
+        path: routes.dashboard.route,
         element: <DashboardPage />,
       },
       {
-        path: routes.login,
+        path: routes.login.route,
         element: <LoginPage />,
       },
       {
-        path: routes.budgets,
+        path: routes.budgets.route,
         element: <BudgetPage />,
       },
       {
-        path: routes.reports,
+        path: routes.reports.route,
         element: <ReportsPage />,
       },
       {
-        path: routes.transactions,
+        path: routes.transactions.route,
         element: <TransactionsPage />,
       },
       {
-        path: routes.settings,
+        path: routes.settings.route,
         element: <SettingsPage />,
       },
     ],

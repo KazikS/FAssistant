@@ -1,3 +1,5 @@
+import { Transactions } from '@/widgets/Transactions/Transactions';
+
 export default function TransactionsPage() {
-  return <div>DashboardPage</div>;
+  return <Transactions />;
 }

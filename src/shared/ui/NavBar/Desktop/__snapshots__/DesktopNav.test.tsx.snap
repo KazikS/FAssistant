@@ -1,281 +1,253 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`DesktopNav > snapshot 1`] = `
-<div>
-  <script
-    nonce=""
+<nav
+  class="chakra-stack css-18futwi"
+>
+  <a
+    aria-current="page"
+    class="active"
+    data-discover="true"
+    href="/"
+    style="display: block; width: 100%;"
   >
-    ((e,i,s,u,m,a,l,h)=&gt;{let d=document.documentElement,w=["light","dark"];function p(n){(Array.isArray(e)?e:[e]).forEach(y=&gt;{let k=y==="class",S=k&&a?m.map(f=&gt;a[f]||f):m;k?(d.classList.remove(...S),d.classList.add(a&&a[n]?a[n]:n)):d.setAttribute(y,n)}),R(n)}function R(n){h&&w.includes(n)&&(d.style.colorScheme=n)}function c(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}if(u)p(u);else try{let n=localStorage.getItem(i)||s,y=l&&n==="system"?c():n;p(y)}catch(n){}})("class","theme","light",null,["light","dark"],null,true,true)
-  </script>
-  <aside
-    class="css-18c4cuq"
+    <div
+      class="chakra-stack css-18qgga7"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-icon css-xxnswu"
+        fill="none"
+        focusable="false"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          height="9"
+          rx="1"
+          width="7"
+          x="3"
+          y="3"
+        />
+        <rect
+          height="5"
+          rx="1"
+          width="7"
+          x="14"
+          y="3"
+        />
+        <rect
+          height="9"
+          rx="1"
+          width="7"
+          x="14"
+          y="12"
+        />
+        <rect
+          height="5"
+          rx="1"
+          width="7"
+          x="3"
+          y="16"
+        />
+      </svg>
+      <p
+        class="css-ykhsqx"
+      >
+        Дашборд
+      </p>
+    </div>
+  </a>
+  <a
+    class=""
+    data-discover="true"
+    href="/transactions"
+    style="display: block; width: 100%;"
   >
     <div
-      class="css-ahjuaj"
+      class="chakra-stack css-18fmiy5"
     >
-      <div
-        class="css-1melo1z"
+      <svg
+        aria-hidden="true"
+        class="chakra-icon css-1b3791e"
+        fill="none"
+        focusable="false"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        FA
-      </div>
-      <div
-        class="css-j7qwjs"
-      >
-        <h2
-          class="chakra-heading css-e7y3j9"
-        >
-          FAssistant
-        </h2>
-        <p
-          class="css-1h92iwa"
-        >
-          личные финансы
-        </p>
-      </div>
-    </div>
-    <div
-      class="chakra-stack css-18futwi"
-    >
-      <a
-        aria-current="page"
-        class="active"
-        data-discover="true"
-        href="/"
-        style="display: block; width: 100%;"
-      >
-        <div
-          class="chakra-stack css-18qgga7"
-        >
-          <svg
-            aria-hidden="true"
-            class="chakra-icon css-xxnswu"
-            fill="none"
-            focusable="false"
-            height="1em"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              height="9"
-              rx="1"
-              width="7"
-              x="3"
-              y="3"
-            />
-            <rect
-              height="5"
-              rx="1"
-              width="7"
-              x="14"
-              y="3"
-            />
-            <rect
-              height="9"
-              rx="1"
-              width="7"
-              x="14"
-              y="12"
-            />
-            <rect
-              height="5"
-              rx="1"
-              width="7"
-              x="3"
-              y="16"
-            />
-          </svg>
-          <p
-            class="css-ykhsqx"
-          >
-            Дашборд
-          </p>
-        </div>
-      </a>
-      <a
-        class=""
-        data-discover="true"
-        href="/transactions"
-        style="display: block; width: 100%;"
-      >
-        <div
-          class="chakra-stack css-18fmiy5"
-        >
-          <svg
-            aria-hidden="true"
-            class="chakra-icon css-1b3791e"
-            fill="none"
-            focusable="false"
-            height="1em"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 20V10"
-            />
-            <path
-              d="M18 20v-4"
-            />
-            <path
-              d="M6 20V4"
-            />
-          </svg>
-          <p
-            class="css-104jh0o"
-          >
-            Операции
-          </p>
-        </div>
-      </a>
-      <a
-        class=""
-        data-discover="true"
-        href="/budgets"
-        style="display: block; width: 100%;"
-      >
-        <div
-          class="chakra-stack css-18fmiy5"
-        >
-          <svg
-            aria-hidden="true"
-            class="chakra-icon css-ssnenp"
-            fill="none"
-            focusable="false"
-            height="1em"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3 3v16a2 2 0 0 0 2 2h16"
-            />
-            <path
-              d="M18 17V9"
-            />
-            <path
-              d="M13 17V5"
-            />
-            <path
-              d="M8 17v-3"
-            />
-          </svg>
-          <p
-            class="css-104jh0o"
-          >
-            Бюджеты
-          </p>
-        </div>
-      </a>
-      <a
-        class=""
-        data-discover="true"
-        href="/reports"
-        style="display: block; width: 100%;"
-      >
-        <div
-          class="chakra-stack css-18fmiy5"
-        >
-          <svg
-            aria-hidden="true"
-            class="chakra-icon css-ssnenp"
-            fill="none"
-            focusable="false"
-            height="1em"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3 3v16a2 2 0 0 0 2 2h16"
-            />
-            <path
-              d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"
-            />
-          </svg>
-          <p
-            class="css-104jh0o"
-          >
-            Отчеты
-          </p>
-        </div>
-      </a>
-      <a
-        class=""
-        data-discover="true"
-        href="/settings"
-        style="display: block; width: 100%;"
-      >
-        <div
-          class="chakra-stack css-18fmiy5"
-        >
-          <svg
-            aria-hidden="true"
-            class="chakra-icon css-ssnenp"
-            fill="none"
-            focusable="false"
-            height="1em"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
-            />
-            <circle
-              cx="12"
-              cy="12"
-              r="3"
-            />
-          </svg>
-          <p
-            class="css-104jh0o"
-          >
-            Настройки
-          </p>
-        </div>
-      </a>
-    </div>
-    <div
-      class="css-xsawf1"
-    />
-    <div
-      class="css-87lzef"
-    >
-      <div
-        class="css-1melo1z"
-      />
-      <div
-        class="css-j7qwjs"
-      >
-        <h2
-          class="chakra-heading css-e7y3j9"
+        <path
+          d="M12 20V10"
         />
-        <p
-          class="css-1h92iwa"
+        <path
+          d="M18 20v-4"
         />
-      </div>
+        <path
+          d="M6 20V4"
+        />
+      </svg>
+      <p
+        class="css-104jh0o"
+      >
+        Операции
+      </p>
     </div>
-  </aside>
-</div>
+  </a>
+  <a
+    class=""
+    data-discover="true"
+    href="/budgets"
+    style="display: block; width: 100%;"
+  >
+    <div
+      class="chakra-stack css-18fmiy5"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-icon css-ssnenp"
+        fill="none"
+        focusable="false"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 3v16a2 2 0 0 0 2 2h16"
+        />
+        <path
+          d="M18 17V9"
+        />
+        <path
+          d="M13 17V5"
+        />
+        <path
+          d="M8 17v-3"
+        />
+      </svg>
+      <p
+        class="css-104jh0o"
+      >
+        Бюджеты
+      </p>
+    </div>
+  </a>
+  <a
+    class=""
+    data-discover="true"
+    href="/reports"
+    style="display: block; width: 100%;"
+  >
+    <div
+      class="chakra-stack css-18fmiy5"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-icon css-ssnenp"
+        fill="none"
+        focusable="false"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 3v16a2 2 0 0 0 2 2h16"
+        />
+        <path
+          d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"
+        />
+      </svg>
+      <p
+        class="css-104jh0o"
+      >
+        Отчеты
+      </p>
+    </div>
+  </a>
+  <a
+    class=""
+    data-discover="true"
+    href="/settings"
+    style="display: block; width: 100%;"
+  >
+    <div
+      class="chakra-stack css-18fmiy5"
+    >
+      <svg
+        aria-hidden="true"
+        class="chakra-icon css-ssnenp"
+        fill="none"
+        focusable="false"
+        height="1em"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="3"
+        />
+      </svg>
+      <p
+        class="css-104jh0o"
+      >
+        Настройки
+      </p>
+    </div>
+  </a>
+</nav>
+`;
+
+exports[`DesktopNav > snapshot 2`] = `
+<article
+  class="css-ahjuaj"
+>
+  <div
+    class="css-1melo1z"
+  >
+    FA
+  </div>
+  <div
+    class="css-j7qwjs"
+  >
+    <h2
+      class="chakra-heading css-e7y3j9"
+    >
+      FAssistant
+    </h2>
+    <p
+      class="css-1h92iwa"
+    >
+      личные финансы
+    </p>
+  </div>
+</article>
 `;

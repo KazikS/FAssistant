@@ -24,13 +24,13 @@ export const MobileNav = () => {
       px={3}
       h="64px"
     >
-      <MobileNavBtn flex="1" subtitle="Главная" icon={LuHouse} to={routes.dashboard} />
+      <MobileNavBtn flex="1" subtitle="Главная" icon={LuHouse} to={routes.dashboard.route} />
       <MobileNavBtn
         flex="1"
         subtitle="Операции"
         icon={LuChartNoAxesColumnDecreasing}
         rotate="90deg"
-        to={routes.transactions}
+        to={routes.transactions.route}
       />
       <Flex flex="1" justifyContent="center">
         <Button
@@ -46,8 +46,8 @@ export const MobileNav = () => {
           <Icon as={LuPlus} w={22} h={22} color="black" />
         </Button>
       </Flex>
-      <MobileNavBtn flex="1" subtitle="Бюджет" icon={LuChartColumn} to={routes.budgets} />
-      <MobileNavBtn flex="1" subtitle="Отчеты" icon={LuChartSpline} to={routes.reports} />
+      <MobileNavBtn flex="1" subtitle="Бюджет" icon={LuChartColumn} to={routes.budgets.route} />
+      <MobileNavBtn flex="1" subtitle="Отчеты" icon={LuChartSpline} to={routes.reports.route} />
     </Flex>
   );
 };

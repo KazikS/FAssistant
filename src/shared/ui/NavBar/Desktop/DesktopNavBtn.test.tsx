@@ -8,10 +8,10 @@ import { DesktopNavBtn } from './DesktopNavBtn';
 
 describe('DesktopNavBtn', () => {
   it('активна кнопка текущего раздела', () => {
-    render(<DesktopNavBtn to={routes.dashboard} title="Дашборд" icon={LuLayoutDashboard} />, {
+    render(<DesktopNavBtn to={routes.dashboard.route} title="Дашборд" icon={LuLayoutDashboard} />, {
       route: '/',
     });
-    render(<DesktopNavBtn to={routes.budgets} title="Бюджеты" icon={LuChartColumn} />, {
+    render(<DesktopNavBtn to={routes.budgets.route} title="Бюджеты" icon={LuChartColumn} />, {
       route: '/',
     });
     expect(screen.getByRole('link', { name: 'Дашборд' })).toHaveAttribute('aria-current', 'page');
@@ -22,7 +22,7 @@ describe('DesktopNavBtn', () => {
   });
 
   it('ссылка по переданному пути', () => {
-    render(<DesktopNavBtn to={routes.dashboard} title="Дашборд" icon={LuLayoutDashboard} />, {
+    render(<DesktopNavBtn to={routes.dashboard.route} title="Дашборд" icon={LuLayoutDashboard} />, {
       route: '/',
     });
 

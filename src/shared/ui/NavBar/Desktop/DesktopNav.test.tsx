@@ -5,9 +5,9 @@ import { render, screen } from '@/test/test-utils-render';
 import { DesktopNav } from './DesktopNav';
 
 describe('DesktopNav', () => {
-  it('все 5 кнопок - ссылки', () => {
+  it('все 6 кнопок - ссылки', () => {
     render(<DesktopNav />);
-    expect(screen.getAllByRole('link')).toHaveLength(5);
+    expect(screen.getAllByRole('link')).toHaveLength(6);
   });
 
   it('наличие всех необходимых кнопок', () => {
@@ -19,13 +19,17 @@ describe('DesktopNav', () => {
   });
 
   it('корректное отображение текущего раздела', () => {
-    render(<DesktopNav />);
+    render(<DesktopNav />, { route: '/' });
     expect(screen.getByRole('link', { name: 'Дашборд' })).toHaveAttribute('aria-current', 'page');
-    expect(screen.getByRole('link', { name: 'Отчеты' })).not.toHaveAttribute('aria-current');
+    expect(screen.getByRole('link', { name: 'Отчеты' })).not.toHaveAttribute(
+      'aria-current',
+      'page'
+    );
   });
 
   it('snapshot', () => {
-    const { container } = render(<DesktopNav />);
-    expect(container).toMatchSnapshot();
+    render(<DesktopNav />);
+    expect(screen.getByRole('navigation')).toMatchSnapshot();
+    expect(screen.getByRole('article')).toMatchSnapshot();
   });
 });
