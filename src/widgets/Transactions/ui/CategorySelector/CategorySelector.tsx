@@ -12,7 +12,15 @@ export const CategorySelector = () => {
   const { select, active } = useActiveCategory();
 
   return (
-    <HStack bgColor="surface.muted" w="fit" p="3px" rounded="xl" gap="0">
+    <HStack
+      bgColor={{ md: 'surface.muted' }}
+      maxW="full"
+      p="3px"
+      rounded="xl"
+      gap={{ base: '2', md: '0' }}
+      overflowX="scroll"
+      scrollbar="hidden"
+    >
       {categories.map((category) => (
         <CategoryVariant
           label={CATEGORIES[category]}

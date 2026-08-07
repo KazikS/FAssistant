@@ -13,7 +13,7 @@ export const Layout = () => {
     <Flex flexDirection={{ base: 'column', md: 'row' }} position="relative" minH="100vh">
       {isMobile ? <MobileNav /> : <DesktopNav />}
       {/* pb нужен потому что фиксированный элемент MobileNav перекрывает низ контента */}
-      <Box as="main" flex="1" bgColor="bg" p="5" pb={{ base: '64px' }}>
+      <Box as="main" flex="1" bgColor="bg" p="5" pb={{ base: '64px' }} overflowX="clip">
         <Heading fontSize={{ base: '18px', md: '22px' }}>{title}</Heading>
         <Outlet />
       </Box>

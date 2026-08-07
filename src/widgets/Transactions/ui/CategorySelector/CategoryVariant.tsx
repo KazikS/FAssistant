@@ -11,12 +11,26 @@ export const CategoryVariant = ({ label, setActive, isActive }: CategoryVariantP
     <Box
       px="4"
       py="2"
-      rounded="xl"
-      bgColor={isActive ? 'surface.primary' : undefined}
+      rounded={{ base: '3xl', md: 'xl' }}
+      bgColor={{
+        base: isActive ? 'brand.solid' : 'surface.primary',
+        md: isActive ? 'surface.primary' : undefined,
+      }}
       onClick={setActive}
       as="button"
+      borderWidth="1px"
+      borderColor={{ base: 'border.primary' }}
     >
-      <Text cursor="pointer">{label}</Text>
+      <Text
+        cursor="pointer"
+        color={{
+          base: isActive ? 'brand.contrast' : 'black',
+        }}
+        fontWeight={{ base: '600' }}
+        textWrap="nowrap"
+      >
+        {label}
+      </Text>
     </Box>
   );
 };
