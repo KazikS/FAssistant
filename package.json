@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "chakra": "npx @chakra-ui/cli typegen ./src/shared/theme/theme.ts",
     "test": "vitest",
-    "postinstall": "npx @chakra-ui/cli typegen ./src/shared/theme/theme.ts"
+    "postinstall": "npm run chakra"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.36.0",
