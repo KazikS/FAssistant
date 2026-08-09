@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "chakra": "npx @chakra-ui/cli typegen ./src/shared/theme/theme.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "postinstall": "npx @chakra-ui/cli typegen ./src/shared/theme/theme.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.36.0",
