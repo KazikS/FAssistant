@@ -15,6 +15,7 @@ export const CategorySelector = () => {
     <HStack
       bgColor={{ md: 'surface.muted' }}
       maxW="full"
+      w={{ base: undefined, md: 'fit' }}
       p="3px"
       rounded="xl"
       gap={{ base: '2', md: '0' }}

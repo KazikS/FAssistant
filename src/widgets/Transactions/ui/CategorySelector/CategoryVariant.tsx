@@ -14,17 +14,18 @@ export const CategoryVariant = ({ label, setActive, isActive }: CategoryVariantP
       rounded={{ base: '3xl', md: 'xl' }}
       bgColor={{
         base: isActive ? 'brand.solid' : 'surface.primary',
-        md: isActive ? 'surface.primary' : undefined,
+        md: isActive ? 'surface.primary' : 'transparent',
       }}
       onClick={setActive}
       as="button"
-      borderWidth="1px"
-      borderColor={{ base: 'border.primary' }}
+      borderWidth={{ base: '1px', md: 0 }}
+      borderColor={{ base: 'border.primary', md: 'none' }}
     >
       <Text
         cursor="pointer"
         color={{
           base: isActive ? 'brand.contrast' : 'black',
+          md: 'black',
         }}
         fontWeight={{ base: '600' }}
         textWrap="nowrap"
