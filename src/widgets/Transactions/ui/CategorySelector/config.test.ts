@@ -33,7 +33,7 @@ describe('category selector', () => {
     expect(toCategoryKey('some value')).toBe('all');
     expect(toCategoryKey('all')).toBe('all');
     expect(toCategoryKey('2')).toBe('all');
-    expect(toCategoryKey('.toString')).toBe('all');
+    expect(toCategoryKey('toString')).toBe('all');
     expect(toCategoryKey('fun')).toBe('fun');
   });
 });

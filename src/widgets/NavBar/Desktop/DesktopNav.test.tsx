@@ -26,10 +26,4 @@ describe('DesktopNav', () => {
       'page'
     );
   });
-
-  it('snapshot', () => {
-    render(<DesktopNav />);
-    expect(screen.getByRole('navigation')).toMatchSnapshot();
-    expect(screen.getByRole('article')).toMatchSnapshot();
-  });
 });

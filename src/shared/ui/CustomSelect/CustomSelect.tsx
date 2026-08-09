@@ -1,4 +1,4 @@
-import { createListCollection, Portal, Select } from '@chakra-ui/react';
+import { createListCollection, Portal, Select, type FlexProps } from '@chakra-ui/react';
 
 type SelectItemType = {
   label: string;
@@ -11,9 +11,16 @@ type SelectProps = {
   onValueChange: (value: string) => void;
   value?: string;
   variant?: string;
+  display: FlexProps['display'];
 };
 
-export const CustomSelect = ({ items, placeholder, onValueChange, value = 'all' }: SelectProps) => {
+export const CustomSelect = ({
+  items,
+  placeholder,
+  onValueChange,
+  value = 'all',
+  display = 'flex',
+}: SelectProps) => {
   const collection = createListCollection({ items });
   return (
     <Select.Root
@@ -23,6 +30,7 @@ export const CustomSelect = ({ items, placeholder, onValueChange, value = 'all' 
       minW="190px"
       onValueChange={(details) => onValueChange(details.value[0])}
       value={value ? [value] : undefined}
+      display={display}
     >
       <Select.HiddenSelect />
       <Select.Control>

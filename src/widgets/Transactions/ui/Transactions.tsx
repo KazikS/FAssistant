@@ -21,6 +21,7 @@ export const Transactions = () => {
         onValueChange={(value) => select(toCategoryKey(value))}
         value={active}
         variant="outline"
+        display={{ base: 'none', md: 'flex' }}
       />
     </Flex>
   );

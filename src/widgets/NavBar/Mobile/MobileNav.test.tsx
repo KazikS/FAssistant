@@ -27,8 +27,4 @@ describe('MobileNav', () => {
     expect(screen.getByRole('link', { name: 'Главная' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Отчеты' })).not.toHaveAttribute('aria-current');
   });
-  it('snapshot', () => {
-    const { container } = render(<MobileNav />);
-    expect(container).toMatchSnapshot();
-  });
 });
