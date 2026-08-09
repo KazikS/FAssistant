@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getCategories } from './config';
+import { getCategories, isCategoryKey, toCategoryKey } from './config';
 
 describe('category selector', () => {
   const MAIN_CATEGORIES = ['all', 'income', 'expense'];
@@ -13,5 +13,27 @@ describe('category selector', () => {
   });
   it('получение побочных категорий', () => {
     expect(getCategories('other')).toEqual(OTHER_CATEGORIES);
+  });
+
+  it('значение относится к CategoryKey', () => {
+    expect(isCategoryKey('all')).toBe(true);
+    expect(isCategoryKey('income')).toBe(true);
+    expect(isCategoryKey('expense')).toBe(true);
+    expect(isCategoryKey('products')).toBe(true);
+    expect(isCategoryKey('transport')).toBe(true);
+    expect(isCategoryKey('cafe')).toBe(true);
+    expect(isCategoryKey('health')).toBe(true);
+    expect(isCategoryKey('fun')).toBe(true);
+    expect(isCategoryKey('salary')).toBe(true);
+    expect(isCategoryKey('toString')).toBe(false);
+    expect(isCategoryKey('2')).toBe(false);
+  });
+
+  it('замена значения НЕ CategoryKey на "all"', () => {
+    expect(toCategoryKey('some value')).toBe('all');
+    expect(toCategoryKey('all')).toBe('all');
+    expect(toCategoryKey('2')).toBe('all');
+    expect(toCategoryKey('.toString')).toBe('all');
+    expect(toCategoryKey('fun')).toBe('fun');
   });
 });

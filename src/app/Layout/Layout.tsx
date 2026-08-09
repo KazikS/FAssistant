@@ -13,7 +13,9 @@ export const Layout = () => {
       <DesktopNav display={{ base: 'none', md: 'flex' }} />
       {/* pb нужен потому что фиксированный элемент MobileNav перекрывает низ контента */}
       <Box as="main" flex="1" bgColor="bg" p="5" pb={{ base: '64px' }} overflowX="clip">
-        <Heading fontSize={{ base: '18px', md: '22px' }}>{title}</Heading>
+        <Heading fontSize={{ base: '18px', md: '22px' }} mb="4">
+          {title}
+        </Heading>
         <Outlet />
       </Box>
     </Flex>

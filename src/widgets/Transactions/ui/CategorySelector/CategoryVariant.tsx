@@ -29,6 +29,7 @@ export const CategoryVariant = ({ label, setActive, isActive }: CategoryVariantP
         }}
         fontWeight={{ base: '600' }}
         textWrap="nowrap"
+        fontSize="13px"
       >
         {label}
       </Text>
