@@ -1,4 +1,4 @@
-import { Flex, Spacer, VStack } from '@chakra-ui/react';
+import { Flex, Spacer, VStack, type FlexProps } from '@chakra-ui/react';
 import {
   LuChartColumn,
   LuChartNoAxesColumnDecreasing,
@@ -8,14 +8,15 @@ import {
   LuUser,
 } from 'react-icons/lu';
 
-import { selectUserEmail, selectUserName } from '@/entities/user';
+import { selectUserName, selectUserEmail } from '@/entities/user';
 import { routes } from '@/shared/config/routes';
 import { Identity } from '@/shared/ui/Identity';
+import { DesktopNavBtn } from '@/shared/ui/Nav/Desktop';
 import { useAppSelector } from '@/store/hooks';
 
-import { DesktopNavBtn } from './DesktopNavBtn';
+type DesktopNavProps = Pick<FlexProps, 'display'>;
 
-export const DesktopNav = () => {
+export const DesktopNav = ({ display = 'flex' }: DesktopNavProps) => {
   const name = useAppSelector(selectUserName);
   const email = useAppSelector(selectUserEmail);
   return (
@@ -29,6 +30,7 @@ export const DesktopNav = () => {
       bgColor="brand.solid"
       top="0"
       minW="256px"
+      display={display}
     >
       <Identity title="FAssistant" subtitle="личные финансы" />
       <VStack as="nav" alignItems="start" w="full" gap="1" mt={5}>

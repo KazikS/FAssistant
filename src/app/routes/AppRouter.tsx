@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 
+import { Layout } from '@/app/Layout';
 import BudgetPage from '@/pages/BudgetPage';
 import DashboardPage from '@/pages/DashboardPage';
 import LoginPage from '@/pages/LoginPage';
@@ -8,7 +9,6 @@ import ReportsPage from '@/pages/Reports';
 import SettingsPage from '@/pages/Settings';
 import TransactionsPage from '@/pages/TransactionsPage';
 import { routes } from '@/shared/config/routes';
-import { Layout } from '@/shared/ui/Layout';
 
 const router = createBrowserRouter([
   {

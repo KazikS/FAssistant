@@ -25,7 +25,12 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
     },
   },
+  selectors: {
+    selectUserName: (state) => state.name,
+    selectUserEmail: (state) => state.email,
+  },
 });
 
 export const { setName, setEmail, setUser } = userSlice.actions;
+export const { selectUserName, selectUserEmail } = userSlice.selectors;
 export const userReducer = userSlice.reducer;

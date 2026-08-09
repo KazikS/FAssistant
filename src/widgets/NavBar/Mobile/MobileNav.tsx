@@ -1,4 +1,4 @@
-import { Flex, Icon, Button } from '@chakra-ui/react';
+import { Flex, Icon, Button, type FlexProps } from '@chakra-ui/react';
 import {
   LuChartColumn,
   LuChartNoAxesColumnDecreasing,
@@ -8,21 +8,23 @@ import {
 } from 'react-icons/lu';
 
 import { routes } from '@/shared/config/routes';
+import { MobileNavBtn } from '@/shared/ui/Nav/Mobile';
 
-import { MobileNavBtn } from './MobileNavBtn';
+type MobileNavProps = Pick<FlexProps, 'display'>;
 
-export const MobileNav = () => {
+export const MobileNav = ({ display = 'flex' }: MobileNavProps) => {
   return (
     <Flex
       bg="surface.navBar"
       w="full"
-      as="aside"
+      as="nav"
       position="fixed"
       bottom="0"
       flexDirection="row"
       alignItems="center"
       px={3}
       h="64px"
+      display={display}
     >
       <MobileNavBtn flex="1" subtitle="Главная" icon={LuHouse} to={routes.dashboard.route} />
       <MobileNavBtn

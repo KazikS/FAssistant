@@ -27,3 +27,32 @@ AI используется в проекте преимущественно к�
 
 Специализированных агентов можно вызывать явно по необходимости:
 `reviewer`, `tech-lead` или `testing`.
+
+## Архитектура
+
+В проекте используется архитектура [FSD](https://fsd.how)
+
+### Слои
+
+```text
+app
+ ↓
+pages
+ ↓
+widgets
+ ↓
+features
+ ↓
+entities
+ ↓
+shared
+```
+
+| Слой       | Может обращаться к                                   |
+| ---------- | ---------------------------------------------------- |
+| `app`      | `pages`, `widgets`, `features`, `entities`, `shared` |
+| `pages`    | `widgets`, `features`, `entities`, `shared`          |
+| `widgets`  | `features`, `entities`, `shared`                     |
+| `features` | `entities`, `shared`                                 |
+| `entities` | `shared`                                             |
+| `shared`   | `shared`                                             |
