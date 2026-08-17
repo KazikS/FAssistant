@@ -1,6 +1,7 @@
 import { HStack, useBreakpointValue } from '@chakra-ui/react';
 
-import { useActiveCategory } from '@/widgets/Transactions/hooks/useActiveCategory';
+import { selectCategory, setCategory } from '@/entities/transaction';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import { CategoryVariant } from './CategoryVariant';
 import { CATEGORIES, getCategories } from './config';
@@ -8,8 +9,8 @@ import { CATEGORIES, getCategories } from './config';
 export const CategorySelector = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const categories = isMobile ? getCategories('all') : getCategories('main');
-
-  const { select, active } = useActiveCategory();
+  const activeCategory = useAppSelector(selectCategory) ?? 'all';
+  const dispatch = useAppDispatch();
 
   return (
     <HStack
@@ -26,8 +27,8 @@ export const CategorySelector = () => {
         <CategoryVariant
           label={CATEGORIES[category]}
           key={category}
-          isActive={category === active}
-          setActive={() => select(category)}
+          isActive={category === activeCategory}
+          setActive={() => dispatch(setCategory(category))}
         />
       ))}
     </HStack>

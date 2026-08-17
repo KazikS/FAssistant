@@ -1,25 +1,28 @@
 import { Flex } from '@chakra-ui/react';
 
+import { selectCategory, setCategory } from '@/entities/transaction';
 import { CustomSelect } from '@/shared/ui/CustomSelect';
-import { useActiveCategory } from '@/widgets/Transactions/hooks/useActiveCategory';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import { CategorySelector } from './CategorySelector';
 import { getCategories, CATEGORIES, toCategoryKey } from './CategorySelector/config';
 
 export const Transactions = () => {
-  const items = getCategories('other').map((key) => ({
+  const categoryItems = getCategories('other').map((key) => ({
     label: CATEGORIES[key],
     value: key,
   }));
-  const { active, select } = useActiveCategory();
+  const activeCategory = useAppSelector(selectCategory);
+  const dispatch = useAppDispatch();
+
   return (
     <Flex gap="4">
       <CategorySelector />
       <CustomSelect
-        items={items}
+        items={categoryItems}
         placeholder="Все категории"
-        onValueChange={(value) => select(toCategoryKey(value))}
-        value={active}
+        onValueChange={(value) => dispatch(setCategory(toCategoryKey(value)))}
+        value={activeCategory ?? 'all'}
         variant="outline"
         display={{ base: 'none', md: 'flex' }}
       />
