@@ -6,7 +6,7 @@ import { isPeriod, parseDate } from '@/widgets/Transactions/lib';
 
 export const PeriodSelector = () => {
   const parsePeriod = (raw: unknown): SelectItemType[] | null =>
-    Array.isArray(raw) && isPeriod(raw) ? raw : null;
+    Array.isArray(raw) && raw.every(isPeriod) ? raw : null;
   const LSPeriods = useMemo(() => ls.get('periods', parsePeriod), []);
 
   const currentMonth = parseDate(new Date());
