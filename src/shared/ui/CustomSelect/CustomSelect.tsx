@@ -1,6 +1,6 @@
 import { createListCollection, Portal, Select, type FlexProps } from '@chakra-ui/react';
 
-type SelectItemType = {
+export type SelectItemType = {
   label: string;
   value: string;
 };
@@ -10,15 +10,14 @@ type SelectProps = {
   placeholder: string;
   onValueChange: (value: string) => void;
   value?: string;
-  variant?: string;
-  display: FlexProps['display'];
+  display?: FlexProps['display'];
 };
 
 export const CustomSelect = ({
   items,
   placeholder,
   onValueChange,
-  value = 'all',
+  value,
   display = 'flex',
 }: SelectProps) => {
   const collection = createListCollection({ items });

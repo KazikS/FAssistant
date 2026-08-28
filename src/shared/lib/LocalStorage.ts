@@ -30,10 +30,16 @@ export class LS {
     try {
       json = JSON.parse(value);
     } catch (error) {
-      throw new Error(`Битый JSON по ключу "${key}"`, { cause: error });
+      console.error(`Битый JSON по ключу "${key}", ошибка: ${error}`);
+      this.delete(key);
+      return null;
     }
 
     return customParse(json);
+  }
+
+  delete(key: string) {
+    localStorage.removeItem(key);
   }
 }
 
