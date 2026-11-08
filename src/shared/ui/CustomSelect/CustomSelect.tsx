@@ -8,8 +8,8 @@ export type SelectItemType = {
 type SelectProps = {
   items: SelectItemType[];
   placeholder: string;
-  onValueChange: (value: string) => void;
-  value?: string;
+  onValueChange: (value: string | undefined) => void;
+  value?: string | null;
   display?: FlexProps['display'];
 };
 
@@ -21,6 +21,7 @@ export const CustomSelect = ({
   display = 'flex',
 }: SelectProps) => {
   const collection = createListCollection({ items });
+  const selectedValues = value === null ? [] : value === undefined ? undefined : [value];
   return (
     <Select.Root
       collection={collection}
@@ -28,7 +29,7 @@ export const CustomSelect = ({
       w="fit"
       minW="190px"
       onValueChange={(details) => onValueChange(details.value[0])}
-      value={value ? [value] : undefined}
+      value={selectedValues}
       display={display}
     >
       <Select.HiddenSelect />
@@ -42,7 +43,7 @@ export const CustomSelect = ({
       </Select.Control>
       <Portal>
         <Select.Positioner>
-          <Select.Content>
+          <Select.Content scrollbar="hidden">
             {collection.items.map((category) => (
               <Select.Item item={category} key={category.value}>
                 {category.label}

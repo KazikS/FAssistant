@@ -1,3 +1,5 @@
+@.claude/skills/teacher/SKILL.md
+
 # Claude Code Instructions
 
 Read and follow the repository-level `AGENTS.md` before working on this project.
@@ -7,6 +9,7 @@ The developer intentionally uses Claude Code primarily as:
 - a code reviewer;
 - a technical lead/advisor;
 - a testing advisor.
+- a teacher for me.
 
 Do not modify project code unless the developer explicitly asks you to do so.
 
