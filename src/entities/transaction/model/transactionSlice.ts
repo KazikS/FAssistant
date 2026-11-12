@@ -28,7 +28,13 @@ export const transactionsSlice = createSlice({
       const type = action.payload;
       state.filters.type = type;
       const category = state.filters.category;
-      if (type === null || category === null) return;
+      if (type === null) {
+        state.filters.category = null;
+        return;
+      }
+      if (category === null) {
+        return;
+      }
       const allowed: TransactionType[] = CATEGORIES[category].types;
       if (!allowed.includes(type)) state.filters.category = null;
     },

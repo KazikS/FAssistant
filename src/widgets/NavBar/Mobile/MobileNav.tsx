@@ -25,6 +25,7 @@ export const MobileNav = ({ display = 'flex' }: MobileNavProps) => {
       px={3}
       h="64px"
       display={display}
+      backdropFilter="blur(8px)"
     >
       <MobileNavBtn flex="1" subtitle="Главная" icon={LuHouse} to={routes.dashboard.route} />
       <MobileNavBtn
