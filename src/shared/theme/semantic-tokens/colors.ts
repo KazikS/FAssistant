@@ -1,5 +1,32 @@
 import { defineSemanticTokens } from '@chakra-ui/react';
 
+const categoryPalettes = {
+  groceries: {
+    solid: { value: { base: 'rgb(27, 122, 90)', _dark: '#35b088' } },
+    surface: { value: { base: '#eaf3ee', _dark: '#182e25' } },
+  },
+  housing: {
+    solid: { value: { base: '#0e4f3c', _dark: '#1f7d5e' } },
+    surface: { value: { base: '#e9f7ef', _dark: '#15291f' } },
+  },
+  cafe: {
+    solid: { value: { base: '#e0533d', _dark: '#f2694f' } },
+    surface: { value: { base: '#fdeee9', _dark: '#32211d' } },
+  },
+  transport: {
+    solid: { value: { base: '#e8a13a', _dark: '#f0b354' } },
+    surface: { value: { base: '#fdf3e5', _dark: '#322819' } },
+  },
+  fun: {
+    solid: { value: { base: '#4fb08a', _dark: '#6fc9a6' } },
+    surface: { value: { base: '#edf7f2', _dark: '#1a2f28' } },
+  },
+  health: {
+    solid: { value: { base: '#9ad4be', _dark: '#8fcbb4' } },
+    surface: { value: { base: '#edf7f2', _dark: '#1e322b' } },
+  },
+};
+
 export const colors = defineSemanticTokens.colors({
   /* ---------- Фон приложения ---------- */
   // Намеренно перекрывает дефолтный `bg` Chakra, чтобы канва была зеленоватой,
@@ -10,8 +37,7 @@ export const colors = defineSemanticTokens.colors({
   surface: {
     primary: { value: { base: '#ffffff', _dark: '#17211c' } }, // карточки
     subtle: { value: { base: '#f4f7f5', _dark: '#1d2822' } }, // вложенные блоки, инпуты
-    muted: { value: { base: '#eef2f0', _dark: '#232f28' } }, // треки прогресса, чипы, клавиши
-    // Полупрозрачный фон нижней навигации (идёт в паре с backdropFilter="blur(8px)")
+    muted: { value: { base: '#eef2f0', _dark: '#232f28' } }, // треки прогресса, чипы, клавиши)
     navBar: { value: { base: 'rgba(255,255,255,0.92)', _dark: 'rgba(23,33,28,0.92)' } },
     // Затемнение под bottom sheet / модалкой
     overlay: { value: { base: 'rgba(10,16,12,0.55)', _dark: 'rgba(0,0,0,0.62)' } },
@@ -108,35 +134,105 @@ export const colors = defineSemanticTokens.colors({
 
   /* ---------- Категории (донат, плитки иконок, бары лимитов) ---------- */
   // .solid — сегмент доната, точка-маркер, заливка бара
-  // .surface — подложка плитки с эмодзи в списке операций
+  // .surface — подложка плитки с иконкой в списке операций
   category: {
-    products: {
-      solid: { value: { base: '#1b7a5a', _dark: '#35b088' } },
-      surface: { value: { base: '#eaf3ee', _dark: '#182e25' } },
+    groceries: categoryPalettes.groceries,
+    cafe: categoryPalettes.cafe,
+    transport: categoryPalettes.transport,
+    car: categoryPalettes.transport,
+    housing: categoryPalettes.housing,
+    utilities: categoryPalettes.housing,
+    connection: {
+      solid: { value: { base: '#087b9a', _dark: '#56cde9' } },
+      surface: { value: { base: '#daebf0', _dark: '#25494b' } },
     },
-    housing: {
-      solid: { value: { base: '#0e4f3c', _dark: '#1f7d5e' } },
-      surface: { value: { base: '#e9f7ef', _dark: '#15291f' } },
+    subscriptions: {
+      solid: { value: { base: '#7442c8', _dark: '#ba98ff' } },
+      surface: { value: { base: '#eae3f7', _dark: '#3c3c50' } },
     },
-    food: {
-      solid: { value: { base: '#e0533d', _dark: '#f2694f' } },
-      surface: { value: { base: '#fdeee9', _dark: '#32211d' } },
+    health: categoryPalettes.health,
+    beauty: categoryPalettes.health,
+    clothes: {
+      solid: { value: { base: '#a531b0', _dark: '#e58bf0' } },
+      surface: { value: { base: '#f2e0f3', _dark: '#46394d' } },
     },
-    transport: {
-      solid: { value: { base: '#e8a13a', _dark: '#f0b354' } },
-      surface: { value: { base: '#fdf3e5', _dark: '#322819' } },
+    home: categoryPalettes.housing,
+    fun: categoryPalettes.fun,
+    sport: categoryPalettes.health,
+    education: {
+      solid: { value: { base: '#454bbb', _dark: '#9fa5ff' } },
+      surface: { value: { base: '#e3e4f5', _dark: '#363f50' } },
     },
-    fun: {
-      solid: { value: { base: '#4fb08a', _dark: '#6fc9a6' } },
-      surface: { value: { base: '#edf7f2', _dark: '#1a2f28' } },
+    travel: categoryPalettes.fun,
+    kids: {
+      solid: { value: { base: '#bc592f', _dark: '#ffa984' } },
+      surface: { value: { base: '#f5e6e0', _dark: '#4c4034' } },
     },
-    health: {
-      solid: { value: { base: '#9ad4be', _dark: '#8fcbb4' } },
-      surface: { value: { base: '#edf7f2', _dark: '#1e322b' } },
+    pets: {
+      solid: { value: { base: '#8a601e', _dark: '#e6b66c' } },
+      surface: { value: { base: '#ede7dd', _dark: '#47432e' } },
     },
+    taxes: {
+      solid: { value: { base: '#784470', _dark: '#cc9ac3' } },
+      surface: { value: { base: '#ebe3ea', _dark: '#413d42' } },
+    },
+    credit: {
+      solid: { value: { base: '#aa4037', _dark: '#fb9286' } },
+      surface: { value: { base: '#f2e2e1', _dark: '#4b3b34' } },
+    },
+    charity: {
+      solid: { value: { base: '#b83c66', _dark: '#ff9cbd' } },
+      surface: { value: { base: '#f4e2e8', _dark: '#4c3d41' } },
+    },
+    salary: {
+      solid: { value: { base: '#1a804a', _dark: '#66d69a' } },
+      surface: { value: { base: '#ddece4', _dark: '#294b39' } },
+    },
+    bonus: {
+      solid: { value: { base: '#92720f', _dark: '#f2ce61' } },
+      surface: { value: { base: '#efeadb', _dark: '#49492c' } },
+    },
+    freelance: {
+      solid: { value: { base: '#2867c9', _dark: '#8ab9ff' } },
+      surface: { value: { base: '#dfe8f7', _dark: '#314450' } },
+    },
+    business: {
+      solid: { value: { base: '#176b77', _dark: '#68bfca' } },
+      surface: { value: { base: '#dce9eb', _dark: '#2a4544' } },
+    },
+    rentIncome: categoryPalettes.housing,
+    cashback: {
+      solid: { value: { base: '#617b19', _dark: '#b9d96a' } },
+      surface: { value: { base: '#e7ebdd', _dark: '#3c4b2e' } },
+    },
+    benefits: {
+      solid: { value: { base: '#6267b7', _dark: '#b8bbf9' } },
+      surface: { value: { base: '#e7e8f4', _dark: '#3c444f' } },
+    },
+    sale: {
+      solid: { value: { base: '#993685', _dark: '#e18dce' } },
+      surface: { value: { base: '#f0e1ed', _dark: '#453a45' } },
+    },
+    savings: {
+      solid: { value: { base: '#3d7632', _dark: '#9ed28f' } },
+      surface: { value: { base: '#e2eae0', _dark: '#364a36' } },
+    },
+    investments: {
+      solid: { value: { base: '#633f9f', _dark: '#bd9cea' } },
+      surface: { value: { base: '#e8e2f1', _dark: '#3d3d4b' } },
+    },
+    transfers: {
+      solid: { value: { base: '#0d8276', _dark: '#62dac7' } },
+      surface: { value: { base: '#dbecea', _dark: '#284c43' } },
+    },
+    debts: {
+      solid: { value: { base: '#a13751', _dark: '#f287a1' } },
+      surface: { value: { base: '#f1e1e5', _dark: '#49383b' } },
+    },
+    gifts: categoryPalettes.fun,
     other: {
-      solid: { value: { base: '#b7c0bb', _dark: '#7d8c85' } },
-      surface: { value: { base: '#f1f3f2', _dark: '#262f2a' } },
+      solid: { value: { base: '#426491', _dark: '#9bbce9' } },
+      surface: { value: { base: '#e3e8ef', _dark: '#35454b' } },
     },
   },
 });

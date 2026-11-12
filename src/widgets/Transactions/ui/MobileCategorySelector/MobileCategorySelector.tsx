@@ -25,7 +25,7 @@ export const MobileCategorySelector = ({ items }: Props) => {
         return (
           <Box
             key={item.value}
-            px="4"
+            px="3"
             py="2"
             rounded="3xl"
             bgColor={isActive ? 'brand.solid' : 'transparent'}
@@ -33,6 +33,7 @@ export const MobileCategorySelector = ({ items }: Props) => {
             as="button"
             textWrap="nowrap"
             cursor="pointer"
+            textStyle="control"
             color={isActive ? 'text.onBrand' : 'text.subtle'}
           >
             {item.label}
