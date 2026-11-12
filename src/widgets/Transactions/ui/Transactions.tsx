@@ -1,8 +1,8 @@
 import { Flex, Grid, Spacer } from '@chakra-ui/react';
 
 import { type CategoryKey } from '@/entities/transaction';
-import type { Transaction, TransactionType } from '@/entities/transaction/model/types';
-import { CustomSelect } from '@/shared/ui/CustomSelect';
+import type { PeriodKey, Transaction, TransactionType } from '@/entities/transaction/model/types';
+import { CustomSelect, type SelectItemType } from '@/shared/ui/CustomSelect';
 import { getCategories, toCategory } from '@/widgets/Transactions/lib';
 
 import { MobileCategorySelector } from './MobileCategorySelector';
@@ -13,17 +13,23 @@ import { TypeTabs } from './TypeTabs';
 type TransactionProps = {
   activeType: TransactionType | null;
   activeCategory: CategoryKey | null;
+  activePeriod: PeriodKey | null;
   transactions: Transaction[];
+  months: SelectItemType[];
   onSetCategory: (value: CategoryKey | null) => void;
   onSetType: (value: TransactionType | null) => void;
+  onSetPeriod: (value: PeriodKey | null) => void;
 };
 
 export const Transactions = ({
   activeType,
   activeCategory,
+  activePeriod,
   transactions,
+  months,
   onSetCategory,
   onSetType,
+  onSetPeriod,
 }: TransactionProps) => {
   const categoryItems = [{ label: 'Все категории', value: 'all' }, ...getCategories(activeType)];
   return (
@@ -40,7 +46,7 @@ export const Transactions = ({
           />
         </Grid>
         <Spacer display={{ base: 'none', md: 'flex' }} />
-        <PeriodSelector />
+        <PeriodSelector monthts={months} activePeriod={activePeriod} onSetPeriod={onSetPeriod} />
         <MobileCategorySelector
           items={categoryItems}
           activeCategory={activeCategory}

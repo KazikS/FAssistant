@@ -1,3 +1,5 @@
+import { isPeriodKey } from '@/entities/transaction/model/guards';
+import type { PeriodKey } from '@/entities/transaction/model/types';
 import { isObject } from '@/shared/lib';
 import type { SelectItemType } from '@/shared/ui/CustomSelect';
 
@@ -15,4 +17,8 @@ export const parseDate = (date: Date, period?: boolean): SelectItemType => {
     label,
     value: `${year}-${month}`,
   };
+};
+
+export const toPeriod = (value: string | undefined): PeriodKey | null => {
+  return value !== undefined && isPeriodKey(value) ? value : null;
 };

@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import { CATEGORIES, type CategoryKey } from './categories';
-import type { MonthKey, Transaction, TransactionFilters, TransactionType } from './types';
+import type { PeriodKey, Transaction, TransactionFilters, TransactionType } from './types';
 
 export type TransactionSliceState = {
   filters: TransactionFilters;
@@ -38,7 +38,7 @@ export const transactionsSlice = createSlice({
       const allowed: TransactionType[] = CATEGORIES[category].types;
       if (!allowed.includes(type)) state.filters.category = null;
     },
-    setPeriod: (state, action: PayloadAction<MonthKey>) => {
+    setPeriod: (state, action: PayloadAction<PeriodKey | null>) => {
       state.filters.period = action.payload;
     },
   },

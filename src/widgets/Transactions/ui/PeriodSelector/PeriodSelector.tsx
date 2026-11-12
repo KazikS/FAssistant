@@ -1,23 +1,21 @@
-import { useState } from 'react';
-
-import { ls } from '@/shared/lib/LocalStorage';
+import type { PeriodKey } from '@/entities/transaction/model/types';
 import { CustomSelect, type SelectItemType } from '@/shared/ui/CustomSelect';
-import { isPeriod, parseDate } from '@/widgets/Transactions/lib';
+import { toPeriod } from '@/widgets/Transactions/lib';
 
-const parsePeriod = (raw: unknown): SelectItemType[] | null =>
-  Array.isArray(raw) && raw.every(isPeriod) ? raw : null;
+type PeriodSelectorProps = {
+  monthts: SelectItemType[];
+  activePeriod: PeriodKey | null;
+  onSetPeriod: (value: PeriodKey | null) => void;
+};
 
-export const PeriodSelector = () => {
-  const [LSPeriods] = useState(() => ls.get('periods', parsePeriod));
-
-  const currentMonth = parseDate(new Date());
-  const selectItems = LSPeriods ?? [currentMonth];
-
+export const PeriodSelector = ({ monthts, activePeriod, onSetPeriod }: PeriodSelectorProps) => {
+  const items: SelectItemType[] = [{ label: 'Все время', value: 'all' }, ...monthts];
   return (
     <CustomSelect
-      items={selectItems}
-      onValueChange={() => console.log('change period')}
+      items={items}
+      onValueChange={(value) => onSetPeriod(toPeriod(value))}
       placeholder="Все время"
+      value={activePeriod}
       display={{ base: 'none', md: 'flex' }}
     />
   );
