@@ -1,15 +1,19 @@
 import { Grid } from '@chakra-ui/react';
 
-import { selectType, setType, TRANSACTION_TYPES } from '@/entities/transaction';
+import { TRANSACTION_TYPES } from '@/entities/transaction';
 import { isTransactionType } from '@/entities/transaction/model/guards';
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import type { TransactionType } from '@/entities/transaction/model/types';
 
 import { TypeVariant } from './TypeVariant';
 
-export const TypeTabs = () => {
+export const TypeTabs = ({
+  activeType,
+  onSetType,
+}: {
+  activeType: TransactionType | null;
+  onSetType: (value: TransactionType | null) => void;
+}) => {
   const allTypes = Object.keys(TRANSACTION_TYPES).filter(isTransactionType);
-  const activeType = useAppSelector(selectType);
-  const dispatch = useAppDispatch();
 
   return (
     <Grid
@@ -23,17 +27,13 @@ export const TypeTabs = () => {
       scrollbar="hidden"
       templateColumns={'repeat(3, 1fr)'}
     >
-      <TypeVariant
-        label="Все"
-        isActive={activeType === null}
-        setActive={() => dispatch(setType(null))}
-      />
+      <TypeVariant label="Все" isActive={activeType === null} setActive={() => onSetType(null)} />
       {allTypes.map((type) => (
         <TypeVariant
           label={TRANSACTION_TYPES[type].label}
           key={type}
           isActive={type === activeType}
-          setActive={() => dispatch(setType(type))}
+          setActive={() => onSetType(type)}
         />
       ))}
     </Grid>

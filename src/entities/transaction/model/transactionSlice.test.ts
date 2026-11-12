@@ -57,4 +57,13 @@ describe('transactions reducers', () => {
     expect(store.filters.period).toBe('2026-09');
     expect(store.filters.type).toBe('income');
   });
+
+  it('выбор категории из состояния "Все категории"', () => {
+    const state: TransactionSliceState = {
+      ...testState,
+      filters: { ...testState.filters, type: 'expense', category: null },
+    };
+    const store = transactionReducer(state, setCategory('groceries'));
+    expect(store.filters.category).toBe('groceries');
+  });
 });
