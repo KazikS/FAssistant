@@ -1,3 +1,5 @@
+import { LuCalendar } from 'react-icons/lu';
+
 import type { PeriodKey } from '@/entities/transaction/model/types';
 import { CustomSelect, type SelectItemType } from '@/shared/ui/CustomSelect';
 import { toPeriod } from '@/widgets/Transactions/lib';
@@ -16,7 +18,7 @@ export const PeriodSelector = ({ monthts, activePeriod, onSetPeriod }: PeriodSel
       onValueChange={(value) => onSetPeriod(toPeriod(value))}
       placeholder="Все время"
       value={activePeriod}
-      display={{ base: 'none', md: 'flex' }}
+      mobileIcon={<LuCalendar />}
     />
   );
 };

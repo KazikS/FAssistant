@@ -7,6 +7,7 @@ import { getCategories, toCategory } from '@/widgets/Transactions/lib';
 
 import { MobileCategorySelector } from './MobileCategorySelector';
 import { PeriodSelector } from './PeriodSelector';
+import { Search } from './Search';
 import { TransactionsList } from './TransactionsList';
 import { TypeTabs } from './TypeTabs';
 
@@ -19,6 +20,7 @@ type TransactionProps = {
   onSetCategory: (value: CategoryKey | null) => void;
   onSetType: (value: TransactionType | null) => void;
   onSetPeriod: (value: PeriodKey | null) => void;
+  onTextChanged: (value: string) => void;
 };
 
 export const Transactions = ({
@@ -30,12 +32,13 @@ export const Transactions = ({
   onSetCategory,
   onSetType,
   onSetPeriod,
+  onTextChanged,
 }: TransactionProps) => {
   const categoryItems = [{ label: 'Все категории', value: 'all' }, ...getCategories(activeType)];
   return (
     <Flex flexDir="column">
       <Flex gap="4" flexDirection={{ base: 'column', md: 'row' }} mb="5">
-        <Grid templateColumns={{ md: 'repeat(2, 1fr)' }} gap="4">
+        <Grid templateColumns={{ md: 'repeat(3, 1fr)' }} gap="4" alignItems="center">
           <TypeTabs activeType={activeType} onSetType={onSetType} />
           <CustomSelect
             items={categoryItems}
@@ -46,7 +49,10 @@ export const Transactions = ({
           />
         </Grid>
         <Spacer display={{ base: 'none', md: 'flex' }} />
-        <PeriodSelector monthts={months} activePeriod={activePeriod} onSetPeriod={onSetPeriod} />
+        <Flex gap="3" alignItems="center">
+          <Search onTextChanged={onTextChanged} />
+          <PeriodSelector monthts={months} activePeriod={activePeriod} onSetPeriod={onSetPeriod} />
+        </Flex>
         <MobileCategorySelector
           items={categoryItems}
           activeCategory={activeCategory}

@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import { useMemo, useState } from 'react';
 
 import {
   selectCategory,
@@ -12,25 +13,27 @@ import {
 import { mockTransactions } from '@/entities/transaction/model/mockTransactions';
 import type { PeriodKey, TransactionType } from '@/entities/transaction/model/types';
 import { usePageTitle } from '@/shared/hooks';
+import { debounce } from '@/shared/lib';
 import { PageHeader } from '@/shared/ui/PageHeader';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Transactions } from '@/widgets/Transactions';
 import { parseDate } from '@/widgets/Transactions/lib';
 
 export default function TransactionsPage() {
+  const [searchValue, setSearchValue] = useState<string>('');
   const activeCategory = useAppSelector(selectCategory);
   const activeType = useAppSelector(selectType);
   const activePeriod = useAppSelector(selectPeriod);
   const dispatch = useAppDispatch();
 
-  const transactions = mockTransactions
-    .filter((transaction) => (activeType ? transaction.type === activeType : transaction))
-    .filter((transaction) =>
-      activeCategory ? transaction.category === activeCategory : transaction
-    )
-    .filter((transaction) =>
-      activePeriod ? transaction.date.slice(0, 7) === activePeriod : transaction
-    );
+  const transactions = mockTransactions.filter(
+    (transaction) =>
+      (!activeType || transaction.type === activeType) &&
+      (!activeCategory || transaction.category === activeCategory) &&
+      (!activePeriod || transaction.date.slice(0, 7) === activePeriod) &&
+      transaction.title.includes(searchValue)
+  );
+
   const title = usePageTitle();
   const monthKeys = [...new Set(mockTransactions.map((item) => item.date.slice(0, 7)))];
   const months = monthKeys
@@ -50,6 +53,11 @@ export default function TransactionsPage() {
     dispatch(setPeriod(value));
   };
 
+  const debouncedSearch = useMemo(
+    () => debounce(100, (value: string) => setSearchValue(value)),
+    []
+  );
+
   return (
     <Box>
       <PageHeader
@@ -66,6 +74,7 @@ export default function TransactionsPage() {
         onSetType={handleSetType}
         onSetPeriod={handleSetPeriod}
         activePeriod={activePeriod}
+        onTextChanged={debouncedSearch}
       />
     </Box>
   );
