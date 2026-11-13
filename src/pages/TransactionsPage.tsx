@@ -31,7 +31,7 @@ export default function TransactionsPage() {
       (!activeType || transaction.type === activeType) &&
       (!activeCategory || transaction.category === activeCategory) &&
       (!activePeriod || transaction.date.slice(0, 7) === activePeriod) &&
-      transaction.title.includes(searchValue)
+      transaction.title.toLowerCase().includes(searchValue)
   );
 
   const title = usePageTitle();
@@ -54,7 +54,7 @@ export default function TransactionsPage() {
   };
 
   const debouncedSearch = useMemo(
-    () => debounce(100, (value: string) => setSearchValue(value)),
+    () => debounce(100, (value: string) => setSearchValue(value.toLowerCase())),
     []
   );
 
