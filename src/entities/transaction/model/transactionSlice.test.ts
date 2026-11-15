@@ -16,6 +16,9 @@ describe('transactions reducers', () => {
       period: null,
     },
     items: null,
+    ui: {
+      isCreateDrawerOpen: false,
+    },
   };
   it('установка категории', () => {
     const store = transactionReducer(testState, setCategory('beauty'));
@@ -56,5 +59,14 @@ describe('transactions reducers', () => {
     const store = transactionReducer(state, setPeriod('2026-09'));
     expect(store.filters.period).toBe('2026-09');
     expect(store.filters.type).toBe('income');
+  });
+
+  it('выбор категории из состояния "Все категории"', () => {
+    const state: TransactionSliceState = {
+      ...testState,
+      filters: { ...testState.filters, type: 'expense', category: null },
+    };
+    const store = transactionReducer(state, setCategory('groceries'));
+    expect(store.filters.category).toBe('groceries');
   });
 });

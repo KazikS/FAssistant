@@ -8,7 +8,6 @@ export const mockTransactions: Transaction[] = [
     category: 'groceries',
     amount: 2840,
     title: 'Покупка продуктов',
-    description: 'Овощи, фрукты и продукты на неделю',
   },
   {
     id: 'mock-2',
@@ -17,7 +16,6 @@ export const mockTransactions: Transaction[] = [
     category: 'cafe',
     amount: 390,
     title: 'Кофе по дороге',
-    description: 'Капучино и круассан',
   },
   {
     id: 'mock-3',
@@ -26,7 +24,6 @@ export const mockTransactions: Transaction[] = [
     category: 'transport',
     amount: 650,
     title: 'Пополнение проездного',
-    description: 'Поездки на метро и автобусе',
   },
   {
     id: 'mock-4',
@@ -35,7 +32,6 @@ export const mockTransactions: Transaction[] = [
     category: 'freelance',
     amount: 12500,
     title: 'Оплата за лендинг',
-    description: 'Вёрстка страницы для небольшого проекта',
   },
   {
     id: 'mock-5',
@@ -44,7 +40,6 @@ export const mockTransactions: Transaction[] = [
     category: 'salary',
     amount: 95000,
     title: 'Зарплата',
-    description: 'Выплата за октябрь',
   },
   {
     id: 'mock-6',
@@ -53,7 +48,6 @@ export const mockTransactions: Transaction[] = [
     category: 'savings',
     amount: 15000,
     title: 'Пополнение накоплений',
-    description: 'Перевод на резервный счёт',
   },
   {
     id: 'mock-7',
@@ -62,7 +56,6 @@ export const mockTransactions: Transaction[] = [
     category: 'subscriptions',
     amount: 499,
     title: 'Музыкальная подписка',
-    description: 'Ежемесячное списание',
   },
   {
     id: 'mock-8',
@@ -71,7 +64,6 @@ export const mockTransactions: Transaction[] = [
     category: 'housing',
     amount: 32000,
     title: 'Аренда квартиры',
-    description: 'Оплата за ноябрь',
   },
   {
     id: 'mock-9',
@@ -80,7 +72,6 @@ export const mockTransactions: Transaction[] = [
     category: 'cashback',
     amount: 1140.5,
     title: 'Кэшбэк за октябрь',
-    description: 'Возврат за покупки по карте',
   },
   {
     id: 'mock-10',
@@ -89,7 +80,6 @@ export const mockTransactions: Transaction[] = [
     category: 'health',
     amount: 1780,
     title: 'Аптека',
-    description: 'Лекарства и витамины',
   },
   {
     id: 'mock-11',
@@ -98,7 +88,6 @@ export const mockTransactions: Transaction[] = [
     category: 'savings',
     amount: 8200,
     title: 'Перевод из накоплений',
-    description: 'Перевод с резервного счёта',
   },
   {
     id: 'mock-12',
@@ -107,7 +96,6 @@ export const mockTransactions: Transaction[] = [
     category: 'education',
     amount: 2400,
     title: 'Книга по TypeScript',
-    description: 'Печатное издание',
   },
   {
     id: 'mock-13',
@@ -116,7 +104,6 @@ export const mockTransactions: Transaction[] = [
     category: 'salary',
     amount: 95000,
     title: 'Зарплата',
-    description: 'Выплата за сентябрь',
   },
   {
     id: 'mock-14',
@@ -125,7 +112,6 @@ export const mockTransactions: Transaction[] = [
     category: 'groceries',
     amount: 1325.4,
     title: 'Покупка продуктов',
-    description: 'Ужин и продукты на завтрак',
   },
   {
     id: 'mock-15',
@@ -134,7 +120,6 @@ export const mockTransactions: Transaction[] = [
     category: 'gifts',
     amount: 3500,
     title: 'Подарок другу',
-    description: 'Подарок ко дню рождения',
   },
   {
     id: 'mock-16',
@@ -143,6 +128,5 @@ export const mockTransactions: Transaction[] = [
     category: 'bonus',
     amount: 10000,
     title: 'Премия',
-    description: 'Премия за завершение проекта',
   },
 ];

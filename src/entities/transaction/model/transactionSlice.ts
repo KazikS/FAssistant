@@ -1,11 +1,14 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import { CATEGORIES, type CategoryKey } from './categories';
-import type { MonthKey, Transaction, TransactionFilters, TransactionType } from './types';
+import type { PeriodKey, Transaction, TransactionFilters, TransactionType } from './types';
 
 export type TransactionSliceState = {
   filters: TransactionFilters;
   items: Transaction[] | null;
+  ui: {
+    isCreateDrawerOpen: boolean;
+  };
 };
 
 const initialState: TransactionSliceState = {
@@ -15,6 +18,9 @@ const initialState: TransactionSliceState = {
     period: null,
   },
   items: null,
+  ui: {
+    isCreateDrawerOpen: false,
+  },
 };
 
 export const transactionsSlice = createSlice({
@@ -38,17 +44,22 @@ export const transactionsSlice = createSlice({
       const allowed: TransactionType[] = CATEGORIES[category].types;
       if (!allowed.includes(type)) state.filters.category = null;
     },
-    setPeriod: (state, action: PayloadAction<MonthKey>) => {
+    setPeriod: (state, action: PayloadAction<PeriodKey | null>) => {
       state.filters.period = action.payload;
+    },
+    setCreateDrawerOpen: (state, action: PayloadAction<boolean>) => {
+      state.ui.isCreateDrawerOpen = action.payload;
     },
   },
   selectors: {
     selectCategory: (state) => state.filters.category,
     selectType: (state) => state.filters.type,
     selectPeriod: (state) => state.filters.period,
+    selectCreateDrawerOpen: (state) => state.ui.isCreateDrawerOpen,
   },
 });
 
-export const { setCategory, setPeriod, setType } = transactionsSlice.actions;
-export const { selectCategory, selectPeriod, selectType } = transactionsSlice.selectors;
+export const { setCategory, setPeriod, setType, setCreateDrawerOpen } = transactionsSlice.actions;
+export const { selectCategory, selectPeriod, selectType, selectCreateDrawerOpen } =
+  transactionsSlice.selectors;
 export const transactionReducer = transactionsSlice.reducer;

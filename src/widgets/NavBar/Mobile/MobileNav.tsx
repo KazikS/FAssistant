@@ -7,12 +7,19 @@ import {
   LuPlus,
 } from 'react-icons/lu';
 
+import { selectCreateDrawerOpen, setCreateDrawerOpen } from '@/entities/transaction';
 import { routes } from '@/shared/config/routes';
 import { MobileNavBtn } from '@/shared/ui/Nav/Mobile';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 type MobileNavProps = Pick<FlexProps, 'display'>;
 
 export const MobileNav = ({ display = 'flex' }: MobileNavProps) => {
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector(selectCreateDrawerOpen);
+  const handleOpen = () => {
+    dispatch(setCreateDrawerOpen(!isOpen));
+  };
   return (
     <Flex
       bg="surface.navBar"
@@ -45,6 +52,7 @@ export const MobileNav = ({ display = 'flex' }: MobileNavProps) => {
           transform="translateY(-18px)"
           boxShadow="0 8px 18px -6px rgba(195, 242, 78, .7)"
           aria-label="LuPlus"
+          onClick={() => handleOpen()}
         >
           <Icon as={LuPlus} w={22} h={22} color="black" />
         </Button>

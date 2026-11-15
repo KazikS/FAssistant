@@ -1,7 +1,6 @@
 import { Box, HStack } from '@chakra-ui/react';
 
-import { selectCategory, setCategory } from '@/entities/transaction';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { type CategoryKey } from '@/entities/transaction';
 import { toCategory } from '@/widgets/Transactions/lib';
 
 type ItemProps = {
@@ -11,11 +10,11 @@ type ItemProps = {
 
 type Props = {
   items: ItemProps[];
+  activeCategory: CategoryKey | null;
+  onSetCategory: (value: CategoryKey | null) => void;
 };
 
-export const MobileCategorySelector = ({ items }: Props) => {
-  const activeCategory = useAppSelector(selectCategory);
-  const dispatch = useAppDispatch();
+export const MobileCategorySelector = ({ items, activeCategory, onSetCategory }: Props) => {
   return (
     <HStack w="full" overflowX="auto" scrollbar="hidden" display={{ base: 'flex', md: 'none' }}>
       {items.map((item) => {
@@ -29,7 +28,7 @@ export const MobileCategorySelector = ({ items }: Props) => {
             py="2"
             rounded="3xl"
             bgColor={isActive ? 'brand.solid' : 'transparent'}
-            onClick={() => dispatch(setCategory(category))}
+            onClick={() => onSetCategory(category)}
             as="button"
             textWrap="nowrap"
             cursor="pointer"
