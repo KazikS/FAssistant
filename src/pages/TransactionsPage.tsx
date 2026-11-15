@@ -3,9 +3,11 @@ import { useMemo, useState } from 'react';
 
 import {
   selectCategory,
+  selectCreateDrawerOpen,
   selectPeriod,
   selectType,
   setCategory,
+  setCreateDrawerOpen,
   setPeriod,
   setType,
   type CategoryKey,
@@ -24,6 +26,7 @@ export default function TransactionsPage() {
   const activeCategory = useAppSelector(selectCategory);
   const activeType = useAppSelector(selectType);
   const activePeriod = useAppSelector(selectPeriod);
+  const isOpen = useAppSelector(selectCreateDrawerOpen);
   const dispatch = useAppDispatch();
 
   const transactions = mockTransactions.filter(
@@ -58,12 +61,17 @@ export default function TransactionsPage() {
     []
   );
 
+  const onClickAction = () => {
+    dispatch(setCreateDrawerOpen(!isOpen));
+  };
+
   return (
     <Box>
       <PageHeader
         title={title}
         subtitle={`Найдено ${transactions.length} записей`}
         btnText="+ Операция"
+        btnAction={onClickAction}
       />
       <Transactions
         activeCategory={activeCategory}

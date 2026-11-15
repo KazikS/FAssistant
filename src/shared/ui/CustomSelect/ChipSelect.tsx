@@ -1,11 +1,11 @@
-import { HStack, Box, chakra, type BoxProps, type StackProps } from '@chakra-ui/react';
+import { Box, type BoxProps, type StackProps, Button, HStack } from '@chakra-ui/react';
 import type { IconType } from 'react-icons';
 
 type ChipSelectProps<T extends string> = {
   items: { value: T; label: string; icon?: IconType }[];
   activeChip: T | null;
   onValueChange: (value: T) => void;
-  variant?: 'default' | 'icon';
+  variant?: 'default' | 'icon' | 'grid';
   checkedBg?: BoxProps['bgColor'];
   checkedTextColor?: BoxProps['color'];
 } & StackProps;
@@ -32,10 +32,11 @@ export const ChipSelect = <T extends string>({
         const isActive = item.value === activeChip;
         const ItemIcon = item.icon;
         return (
-          <chakra.button
+          <Button
             key={item.value}
             px="3"
             py="2"
+            gap="0"
             rounded={isIcon ? 'xl' : '3xl'}
             bgColor={isActive ? (checkedBg ?? 'brand.solid') : 'transparent'}
             onClick={() => onValueChange(item.value)}
@@ -54,7 +55,7 @@ export const ChipSelect = <T extends string>({
               {ItemIcon ? <ItemIcon aria-hidden="true" /> : item.label}
             </Box>
             <Box>{item.label}</Box>
-          </chakra.button>
+          </Button>
         );
       })}
     </HStack>
