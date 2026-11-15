@@ -16,6 +16,9 @@ describe('transactions reducers', () => {
       period: null,
     },
     items: null,
+    ui: {
+      isCreateDrawerOpen: false,
+    },
   };
   it('установка категории', () => {
     const store = transactionReducer(testState, setCategory('beauty'));

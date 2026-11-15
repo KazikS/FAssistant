@@ -10,6 +10,7 @@ export const Search = ({ onTextChanged }: { onTextChanged: (value: string) => vo
         p="2"
         rounded="xl"
         onChange={(e) => onTextChanged(e.target.value.trim())}
+        minW={{ base: undefined, md: '48' }}
       />
     </InputGroup>
   );

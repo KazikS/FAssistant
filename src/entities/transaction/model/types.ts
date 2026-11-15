@@ -9,7 +9,6 @@ export type Transaction = {
   category: CategoryKey;
   amount: number;
   title: string;
-  description: string;
 };
 
 export type CategoryMeta = {

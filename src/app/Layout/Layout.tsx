@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { Outlet } from 'react-router';
 
+import { CreateTransaction } from '@/features/CreateTransaction';
 import { DesktopNav, MobileNav } from '@/widgets/NavBar';
 
 export const Layout = () => {
@@ -11,6 +12,7 @@ export const Layout = () => {
       {/* pb нужен потому что фиксированный элемент MobileNav перекрывает низ контента */}
       <Box as="main" flex="1" bgColor="bg" p="5" pb={{ base: '64px' }} overflowX="clip">
         <Outlet />
+        <CreateTransaction />
       </Box>
     </Flex>
   );
