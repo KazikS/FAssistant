@@ -14,6 +14,17 @@ export const TransactionsList = ({ transactions }: { transactions: Transaction[]
     acc[key].push(transaction);
     return acc;
   }, {});
+
+  if (Object.keys(groupedByDate).length === 0) {
+    return (
+      <Flex justifyContent="center" alignItems="center">
+        <Text fontSize="24px" fontWeight="600" color="text.subtle">
+          Список операций пуст
+        </Text>
+      </Flex>
+    );
+  }
+
   return (
     <Flex flexDirection="column" bg="surface.primary" rounded="2xl" px="1" py="2">
       {Object.keys(groupedByDate).map((date) => {

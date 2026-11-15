@@ -12,10 +12,10 @@ import {
   setType,
   type CategoryKey,
 } from '@/entities/transaction';
-import { mockTransactions } from '@/entities/transaction/model/mockTransactions';
-import type { PeriodKey, TransactionType } from '@/entities/transaction/model/types';
+import { isTransaction } from '@/entities/transaction/model/guards';
+import type { PeriodKey, Transaction, TransactionType } from '@/entities/transaction/model/types';
 import { usePageTitle } from '@/shared/hooks';
-import { debounce } from '@/shared/lib';
+import { debounce, LS } from '@/shared/lib';
 import { PageHeader } from '@/shared/ui/PageHeader';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Transactions } from '@/widgets/Transactions';
@@ -28,8 +28,16 @@ export default function TransactionsPage() {
   const activePeriod = useAppSelector(selectPeriod);
   const isOpen = useAppSelector(selectCreateDrawerOpen);
   const dispatch = useAppDispatch();
+  const ls = new LS();
 
-  const transactions = mockTransactions.filter(
+  const allTransactions =
+    ls.get<Transaction[]>('transactions', (raw) =>
+      Array.isArray(raw) && raw.every(isTransaction) ? raw : null
+    ) ?? [];
+
+  console.log(allTransactions);
+
+  const transactions = allTransactions.filter(
     (transaction) =>
       (!activeType || transaction.type === activeType) &&
       (!activeCategory || transaction.category === activeCategory) &&
@@ -38,7 +46,7 @@ export default function TransactionsPage() {
   );
 
   const title = usePageTitle();
-  const monthKeys = [...new Set(mockTransactions.map((item) => item.date.slice(0, 7)))];
+  const monthKeys = [...new Set(allTransactions.map((item) => item.date.slice(0, 7)))];
   const months = monthKeys
     .sort()
     .reverse()
