@@ -20,6 +20,7 @@ export class LS {
    * @param key ключ для поиска значения в localStorage
    * @param customParse функция проверки формы: возвращает T либо null, если данные не подходят
    * @returns T, либо null если записи нет или проверка не прошла
+   * @throws Если сохранённое значение не является JSON; исходная запись сохраняется.
    */
   get<T>(key: string, customParse: (raw: unknown) => T | null): T | null {
     const value = localStorage.getItem(key);
@@ -30,9 +31,7 @@ export class LS {
     try {
       json = JSON.parse(value);
     } catch (error) {
-      console.error(`Битый JSON по ключу "${key}", ошибка: ${error}`);
-      this.delete(key);
-      return null;
+      throw new Error(`Ошибка чтения JSON из localStorage по ключу "${key}"`, { cause: error });
     }
 
     return customParse(json);

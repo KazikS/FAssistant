@@ -35,7 +35,13 @@ const renderForm = () => {
 };
 
 beforeEach(() => {
-  vi.spyOn(ls, 'set').mockImplementation(() => {});
+  const saved = new Map<string, string>();
+  vi.stubGlobal('localStorage', {
+    getItem: (key: string) => saved.get(key) ?? null,
+    setItem: (key: string, value: string) => saved.set(key, value),
+    removeItem: (key: string) => saved.delete(key),
+  });
+  vi.spyOn(ls, 'set');
   vi.stubGlobal(
     'ResizeObserver',
     class {
@@ -97,8 +103,7 @@ describe('CreateTransaction', () => {
     await user.click(screen.getByRole('button', { name: 'Сохранить' }));
 
     await waitFor(() => {
-      expect(ls.set).toHaveBeenCalledWith(
-        'transaction',
+      expect(ls.set).toHaveBeenCalledWith('transactions', [
         expect.objectContaining({
           id: expect.any(String),
           date: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
@@ -106,8 +111,8 @@ describe('CreateTransaction', () => {
           category: 'cafe',
           amount: 1240.5,
           title: 'Обед',
-        })
-      );
+        }),
+      ]);
     });
     expect(ls.set).toHaveBeenCalledTimes(1);
     expect(store.getState().transactions.ui.isCreateDrawerOpen).toBe(false);
@@ -163,6 +168,42 @@ describe('CreateTransaction', () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('textbox', { name: 'Название операции' })).toHaveValue('Аванс');
     expect(screen.getByRole('textbox', { name: 'Сумма операции' })).toHaveValue('100');
+    expect(store.getState().transactions.ui.isCreateDrawerOpen).toBe(true);
+    expect(ls.set).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([
+    ['битый JSON', '{broken'],
+    ['неверный формат', 'null'],
+    [
+      'частично повреждённый массив',
+      JSON.stringify([
+        {
+          id: 'existing',
+          date: '2026-11-15',
+          title: 'Зарплата',
+          amount: 100,
+          type: 'income',
+          category: 'salary',
+        },
+        { id: 'broken', date: 'invalid' },
+      ]),
+    ],
+  ])('не перезаписывает историю: %s', async (_name, raw) => {
+    localStorage.setItem('transactions', raw);
+    const { user, store } = renderForm();
+
+    await user.type(screen.getByRole('textbox', { name: 'Сумма операции' }), '100');
+    await user.type(screen.getByRole('textbox', { name: 'Название операции' }), 'Аванс');
+    await user.click(screen.getByRole('button', { name: 'Зарплата' }));
+    await user.click(screen.getByRole('button', { name: 'Сохранить' }));
+
+    expect(
+      await screen.findByText('Не удалось сохранить операцию. Попробуй ещё раз.')
+    ).toBeInTheDocument();
+    expect(localStorage.getItem('transactions')).toBe(raw);
+    expect(ls.set).not.toHaveBeenCalled();
+    expect(screen.getByRole('textbox', { name: 'Название операции' })).toHaveValue('Аванс');
     expect(store.getState().transactions.ui.isCreateDrawerOpen).toBe(true);
   });
 

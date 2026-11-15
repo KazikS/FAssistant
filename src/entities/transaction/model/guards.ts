@@ -12,10 +12,17 @@ export const isTransactionType = (value: string): value is TransactionType =>
 export const isPeriodKey = (value: string): value is PeriodKey =>
   /^\d+-(0[1-9]|1[0-2])$/.test(value);
 
+const isTransactionDate = (value: string): boolean => {
+  if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
+};
+
 export const isTransaction = (raw: unknown): raw is Transaction =>
   isObject(raw) &&
   typeof raw.id === 'string' &&
   typeof raw.date === 'string' &&
+  isTransactionDate(raw.date) &&
   typeof raw.title === 'string' &&
   typeof raw.amount === 'number' &&
   Number.isFinite(raw.amount) &&

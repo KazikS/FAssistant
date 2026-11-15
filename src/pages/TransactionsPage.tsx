@@ -1,7 +1,8 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 
 import {
+  loadTransactions,
   selectCategory,
   selectCreateDrawerOpen,
   selectPeriod,
@@ -12,10 +13,9 @@ import {
   setType,
   type CategoryKey,
 } from '@/entities/transaction';
-import { isTransaction } from '@/entities/transaction/model/guards';
 import type { PeriodKey, Transaction, TransactionType } from '@/entities/transaction/model/types';
 import { usePageTitle } from '@/shared/hooks';
-import { debounce, LS } from '@/shared/lib';
+import { debounce } from '@/shared/lib';
 import { PageHeader } from '@/shared/ui/PageHeader';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Transactions } from '@/widgets/Transactions';
@@ -28,14 +28,13 @@ export default function TransactionsPage() {
   const activePeriod = useAppSelector(selectPeriod);
   const isOpen = useAppSelector(selectCreateDrawerOpen);
   const dispatch = useAppDispatch();
-  const ls = new LS();
-
-  const allTransactions =
-    ls.get<Transaction[]>('transactions', (raw) =>
-      Array.isArray(raw) && raw.every(isTransaction) ? raw : null
-    ) ?? [];
-
-  console.log(allTransactions);
+  let allTransactions: Transaction[] = [];
+  let storageError = false;
+  try {
+    allTransactions = loadTransactions();
+  } catch {
+    storageError = true;
+  }
 
   const transactions = allTransactions.filter(
     (transaction) =>
@@ -77,21 +76,27 @@ export default function TransactionsPage() {
     <Box>
       <PageHeader
         title={title}
-        subtitle={`Найдено ${transactions.length} записей`}
+        subtitle={storageError ? undefined : `Найдено ${transactions.length} записей`}
         btnText="+ Операция"
         btnAction={onClickAction}
       />
-      <Transactions
-        activeCategory={activeCategory}
-        activeType={activeType}
-        transactions={transactions}
-        months={months}
-        onSetCategory={handleSetCategory}
-        onSetType={handleSetType}
-        onSetPeriod={handleSetPeriod}
-        activePeriod={activePeriod}
-        onTextChanged={debouncedSearch}
-      />
+      {storageError ? (
+        <Text role="alert" color="fg.error">
+          Не удалось прочитать операции. Сохранённые данные не изменены.
+        </Text>
+      ) : (
+        <Transactions
+          activeCategory={activeCategory}
+          activeType={activeType}
+          transactions={transactions}
+          months={months}
+          onSetCategory={handleSetCategory}
+          onSetType={handleSetType}
+          onSetPeriod={handleSetPeriod}
+          activePeriod={activePeriod}
+          onTextChanged={debouncedSearch}
+        />
+      )}
     </Box>
   );
 }

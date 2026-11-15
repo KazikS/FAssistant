@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { setCreateDrawerOpen } from '@/entities/transaction';
-import { isTransaction } from '@/entities/transaction/model/guards';
+import { loadTransactions, setCreateDrawerOpen } from '@/entities/transaction';
 import type { Transaction } from '@/entities/transaction/model/types';
 import { ls } from '@/shared/lib';
 import { useAppDispatch } from '@/store/hooks';
@@ -61,17 +60,7 @@ export const useCreateTransactionForm = () => {
 
     clearErrors('root');
     try {
-      const saved =
-        ls.get<Transaction[]>('transactions', (raw) => {
-          if (Array.isArray(raw) && raw.every(isTransaction)) {
-            return raw;
-          }
-          if (isTransaction(raw)) {
-            return [raw];
-          }
-          return null;
-        }) ?? [];
-
+      const saved = loadTransactions();
       ls.set('transactions', [...saved, transaction]);
     } catch {
       setError('root.save', {
