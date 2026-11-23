@@ -2,11 +2,11 @@ import { Flex, Grid, Spacer } from '@chakra-ui/react';
 
 import { type CategoryKey } from '@/entities/transaction';
 import type { PeriodKey, Transaction, TransactionType } from '@/entities/transaction/model/types';
-import { CustomSelect, type SelectItemType } from '@/shared/ui/CustomSelect';
-import { getCategories, toCategory } from '@/widgets/Transactions/lib';
+import { CustomSelect } from '@/shared/ui/CustomSelect';
+import { PeriodSelector } from '@/shared/ui/PeriodSelector';
+import { getCategories, toCategory, toPeriod } from '@/widgets/Transactions/lib';
 
 import { MobileCategorySelector } from './MobileCategorySelector';
-import { PeriodSelector } from './PeriodSelector';
 import { Search } from './Search';
 import { TransactionsList } from './TransactionsList';
 import { TypeTabs } from './TypeTabs';
@@ -16,7 +16,7 @@ type TransactionProps = {
   activeCategory: CategoryKey | null;
   activePeriod: PeriodKey | null;
   transactions: Transaction[];
-  months: SelectItemType[];
+  months: string[];
   onSetCategory: (value: CategoryKey | null) => void;
   onSetType: (value: TransactionType | null) => void;
   onSetPeriod: (value: PeriodKey | null) => void;
@@ -51,7 +51,12 @@ export const Transactions = ({
         <Spacer display={{ base: 'none', md: 'flex' }} />
         <Flex gap="3" alignItems="center">
           <Search onTextChanged={onTextChanged} />
-          <PeriodSelector monthts={months} activePeriod={activePeriod} onSetPeriod={onSetPeriod} />
+          <PeriodSelector
+            variant="select"
+            months={months}
+            value={activePeriod}
+            onChange={(month) => onSetPeriod(toPeriod(month))}
+          />
         </Flex>
         <MobileCategorySelector
           items={categoryItems}

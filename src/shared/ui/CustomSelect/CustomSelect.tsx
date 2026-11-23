@@ -9,6 +9,7 @@ export type SelectItemType = {
 type SelectProps = {
   items: SelectItemType[];
   placeholder: string;
+  triggerLabel?: string;
   onValueChange: (value: string | undefined) => void;
   value?: string | null;
   display?: FlexProps['display'];
@@ -18,6 +19,7 @@ type SelectProps = {
 export const CustomSelect = ({
   items,
   placeholder,
+  triggerLabel,
   onValueChange,
   value,
   display = 'flex',
@@ -38,7 +40,7 @@ export const CustomSelect = ({
       <Select.HiddenSelect />
       <Select.Control>
         <Select.Trigger
-          aria-label={`Выбрать: ${placeholder}`}
+          aria-label={triggerLabel ?? `Выбрать: ${placeholder}`}
           px={{ base: mobileIcon ? '0' : '3', md: '3' }}
           justifyContent={{ base: mobileIcon ? 'center' : 'space-between', md: 'space-between' }}
           w={{ base: mobileIcon ? '10' : 'full', md: 'full' }}

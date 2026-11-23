@@ -19,6 +19,6 @@ export const parseDate = (date: Date, period?: boolean): SelectItemType => {
   };
 };
 
-export const toPeriod = (value: string | undefined): PeriodKey | null => {
-  return value !== undefined && isPeriodKey(value) ? value : null;
+export const toPeriod = (value: string | null): PeriodKey | null => {
+  return value !== null && isPeriodKey(value) ? value : null;
 };

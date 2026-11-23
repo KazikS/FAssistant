@@ -1,7 +1,8 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Button, Text } from '@chakra-ui/react';
 import { useMemo, useState } from 'react';
 
 import {
+  getTransactionMonths,
   loadTransactions,
   selectCategory,
   selectCreateDrawerOpen,
@@ -19,7 +20,6 @@ import { debounce } from '@/shared/lib';
 import { PageHeader } from '@/shared/ui/PageHeader';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Transactions } from '@/widgets/Transactions';
-import { parseDate } from '@/widgets/Transactions/lib';
 
 export default function TransactionsPage() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -45,11 +45,7 @@ export default function TransactionsPage() {
   );
 
   const title = usePageTitle();
-  const monthKeys = [...new Set(allTransactions.map((item) => item.date.slice(0, 7)))];
-  const months = monthKeys
-    .sort()
-    .reverse()
-    .map((month) => parseDate(new Date(`${month}-01T12:00:00`)));
+  const months = getTransactionMonths(allTransactions);
 
   const handleSetType = (value: TransactionType | null) => {
     dispatch(setType(value));
@@ -77,8 +73,16 @@ export default function TransactionsPage() {
       <PageHeader
         title={title}
         subtitle={storageError ? undefined : `Найдено ${transactions.length} записей`}
-        btnText="+ Операция"
-        btnAction={onClickAction}
+        endContent={
+          <Button
+            onClick={() => onClickAction()}
+            bgColor="accent.primary"
+            color="text.onAccent"
+            rounded="2xl"
+          >
+            + Операция
+          </Button>
+        }
       />
       {storageError ? (
         <Text role="alert" color="fg.error">
