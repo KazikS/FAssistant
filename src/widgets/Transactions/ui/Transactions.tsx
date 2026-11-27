@@ -52,7 +52,7 @@ export const Transactions = ({
         <Flex gap="3" alignItems="center">
           <Search onTextChanged={onTextChanged} />
           <PeriodSelector
-            variant="select"
+            allowAllTime
             months={months}
             value={activePeriod}
             onChange={(month) => onSetPeriod(toPeriod(month))}

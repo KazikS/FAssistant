@@ -31,7 +31,6 @@ export default function DashboardPage() {
       title={title}
       endContent={
         <PeriodSelector
-          variant="stepper"
           months={months}
           value={months.includes(selectedMonth) ? selectedMonth : currentMonth}
           onChange={setSelectedMonth}
